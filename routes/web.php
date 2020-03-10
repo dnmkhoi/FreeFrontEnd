@@ -17,8 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/','backendController@dashboard')->name('backend.dashboard');
 
-Auth::routes();
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::get('/admin', 'BackendController@dashboard')->name('backend.dashboard');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+// Xác thực Routes...
+Route::get('/admin/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/admin/login', 'Auth\LoginController@login');
+Route::post('/admin/logout', 'Auth\LoginController@logout')->name('logout');
+// Đăng ký Routes...
+Route::get('/admin/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/admin/register', 'Auth\RegisterController@register');
