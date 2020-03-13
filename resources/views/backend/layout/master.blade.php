@@ -63,6 +63,8 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        @include('backend.layout.partials.error')
+        @include('backend.layout.partials.flash')
         @yield('content')
       </div><!-- /.container-fluid -->
     </section>

@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->bigInteger('active')->default(0);//default 0 là chưa kích hoạt 1 là kích hoạt
             $table->rememberToken();
             $table->timestamps();
         });
