@@ -15,7 +15,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "yangqi/htmldom": "^1.0"
+        "yangqi/htmldom": "dev-master#0c1d0f89de3183e52f044aa4145c145446327edc"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
