@@ -135,7 +135,7 @@ return [
     */
 
     'providers' => [
-
+        Yangqi\Htmldom\HtmldomServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
@@ -189,7 +189,7 @@ return [
     */
 
     'aliases' => [
-
+        'Htmldom' => Yangqi\Htmldom\Htmldom::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
