@@ -1,7 +1,7 @@
 # Fucking installation
 
 ```bash
-compoer install
+composer install
 
 copy .env.example .env
 
