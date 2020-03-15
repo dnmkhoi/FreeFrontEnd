@@ -11,9 +11,11 @@ class backendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard(){
+    public function dashboard()
+    {
         return view('backend.dashboard');
     }
+    
     public function index()
     {
         //
