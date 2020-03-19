@@ -1,43 +1,38 @@
 @extends('backend.layout.master')
 
 @section('content-sub')
-Danh sách người dùng
+Danh sách thể loại
 @endsection
 
 @section('content')
-<input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Tìm kiếm tên User">
+<div>
+<a href="{{ route('categories.create') }}" class="btn btn-primary">Thêm mới</a>
+</div>
+<input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Tìm kiếm tên thể loại">
 <div class="form-group">
 </div>
 <table id="myTable" class="table table-striped table-bordered">
     <thead>
         <tr>
             <th>STT</th>
-            <th>Tên Người dùng</th>
-            <th>Email</th>
-            <th>Trạng thái</th>
+            <th >Tên thể loại</th>
+            <th class="w-10px text-center">Hành động</th>
         </tr>
     </thead>
     <tbody>
         <?php
         $stt = 1;
         ?>
-        @foreach($danhsachUser as $user)
+        @foreach($dsCate as $cate)
         <tr>
             <td>{{ $loop->index + 1 }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td class="text-center">
-                <form id="action-active" name="action-active" method="post" action="{{ route('user.active',['id' => $user->id]) }}">
-                    @csrf
-                    @if ( $user->active == 0)
-                        <button class="btn-flat btn btn-sm btn-secondary">
-                            <i class="fa fa-check-circle"></i>
-                        </button>
-                    @else
-                        <button class="btn-flat btn btn-sm btn-success">
-                            <i class="fa fa-check-circle"></i>
-                        </button>
-                    @endif
+            <td>{{ $cate->cat_name }}</td>
+            <td>
+                <a href="{{ route('categories.edit', ['id' => $cate->cat_id]) }}" class="btn btn-xs btn-flat btn-success">Sửa</a>
+                <form class="d-inline" method="post" action="{{ route('categories.destroy', ['id' => $cate->cat_id]) }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_method" value="DELETE" />
+                    <button class="btn btn-xs btn-flat btn-danger">Xóa</button>
                 </form>
             </td>
         </tr>
@@ -47,7 +42,7 @@ Danh sách người dùng
         @endforeach
     </tbody>
 </table>
-{{ $danhsachUser->links() }}
+{{ $dsCate->links() }}
 @endsection
 <script>
     function myFunction() {
@@ -73,6 +68,10 @@ Danh sách người dùng
 </script>
 <style>
     table th{
+        text-align: center;
+    }
+    .w-10px{
+        width: 3%;
         text-align: center;
     }
 </style>

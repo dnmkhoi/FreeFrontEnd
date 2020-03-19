@@ -36,7 +36,16 @@ Route::get('/admin/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/admin/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('/admin/register', 'Auth\RegisterController@register');
 
-//
+//User
 Route::get('/admin/user', 'UserController@index')->name('user.index');
+// Thể loại
+Route::get('/admin/categories', 'CategoriesController@index')->name('categories.index');
+Route::get('/admin/categories/create', 'CategoriesController@create')->name('categories.create');
+Route::post('/admin/categories/store', 'CategoriesController@store')->name('categories.store');
+Route::get('/admin/categories/edit/{id}', 'CategoriesController@edit')->name('categories.edit');
+Route::put('/admin/categories/update/{id}', 'CategoriesController@update')->name('categories.update');
+Route::delete('/admin/categories/delete/{id}', 'CategoriesController@destroy')->name('categories.destroy');
+// Avatar
+Route::get('/admin/avatar', 'AvatarController@index')->name('avatar.index');
 
 Route::post('/admin/user/active/{id}', 'UserController@update')->name('user.active');

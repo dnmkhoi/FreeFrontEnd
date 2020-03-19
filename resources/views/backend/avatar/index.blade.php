@@ -1,45 +1,32 @@
 @extends('backend.layout.master')
 
 @section('content-sub')
-Danh sách người dùng
+Danh sách Avatars
 @endsection
 
 @section('content')
-<input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Tìm kiếm tên User">
+<input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Tìm kiếm tên avatar">
 <div class="form-group">
 </div>
 <table id="myTable" class="table table-striped table-bordered">
     <thead>
         <tr>
             <th>STT</th>
-            <th>Tên Người dùng</th>
-            <th>Email</th>
-            <th>Trạng thái</th>
+            <th>Tiêu đề avatar</th>
+            <th>Loại avatar</th>
+            <th>Src avatar</th>
         </tr>
     </thead>
     <tbody>
         <?php
         $stt = 1;
         ?>
-        @foreach($danhsachUser as $user)
+        @foreach($dsAvatar as $avartar)
         <tr>
             <td>{{ $loop->index + 1 }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td class="text-center">
-                <form id="action-active" name="action-active" method="post" action="{{ route('user.active',['id' => $user->id]) }}">
-                    @csrf
-                    @if ( $user->active == 0)
-                        <button class="btn-flat btn btn-sm btn-secondary">
-                            <i class="fa fa-check-circle"></i>
-                        </button>
-                    @else
-                        <button class="btn-flat btn btn-sm btn-success">
-                            <i class="fa fa-check-circle"></i>
-                        </button>
-                    @endif
-                </form>
-            </td>
+            <td>{{ $avartar->avt_title }}</td>
+            <td>{{ $avartar->avt_type }}</td>
+            <td>{{ $avartar->avt_src }}</td>
         </tr>
         <?php
         $stt++;
@@ -47,7 +34,7 @@ Danh sách người dùng
         @endforeach
     </tbody>
 </table>
-{{ $danhsachUser->links() }}
+{{ $dsAvatar->links() }}
 @endsection
 <script>
     function myFunction() {

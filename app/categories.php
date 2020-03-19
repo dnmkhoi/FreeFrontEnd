@@ -11,4 +11,6 @@ class categories extends Model
     protected $guarded      = ['cat_id'];
     protected $primaryKey   = 'cat_id';
     protected $dateFormat   = 'Y-m-d H:i:s';
+    public $timestamps = false;
+
 }

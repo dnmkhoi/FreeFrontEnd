@@ -19,7 +19,6 @@
               </p>
             </a>
           </li>
-
         </ul>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
@@ -30,8 +29,27 @@
                 </p>
               </a>
             </li>
-
-          </ul>
+        </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="{{route('avatar.index')}}" class="nav-link {{ (strpos(Route::currentRouteName(), 'avatar.index') === 0) ? 'active' : '' }}">
+                <i class="nav-icon fas fa-palette"></i>
+                <p>
+                    Avatars
+                </p>
+              </a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="{{route('categories.index')}}" class="nav-link {{ (strpos(Route::currentRouteName(), 'categories.index') === 0) ? 'active' : '' }}">
+                <i class="nav-icon fa fa-list-alt"></i>
+                <p>
+                    Categories
+                </p>
+              </a>
+            </li>
+        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
