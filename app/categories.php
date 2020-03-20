@@ -13,4 +13,8 @@ class categories extends Model
     protected $dateFormat   = 'Y-m-d H:i:s';
     public $timestamps = false;
 
+    public function articles()
+    {
+        return $this->hasMany('App\articles', 'cat_id', 'cat_id');
+    }
 }

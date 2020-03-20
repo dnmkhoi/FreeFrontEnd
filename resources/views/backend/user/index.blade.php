@@ -11,10 +11,10 @@ Danh sách người dùng
 <table id="myTable" class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>STT</th>
-            <th>Tên Người dùng</th>
-            <th>Email</th>
-            <th>Trạng thái</th>
+            <th class="w-3px">STT</th>
+            <th class="w-10px">Tên Người dùng</th>
+            <th class="w-10px">Email</th>
+            <th class="w-3px">Trạng thái</th>
         </tr>
     </thead>
     <tbody>
@@ -74,5 +74,11 @@ Danh sách người dùng
 <style>
     table th{
         text-align: center;
+    }
+    .w-3px{
+        width: 3%;
+    }
+    .w-10px{
+        width: 48%;
     }
 </style>

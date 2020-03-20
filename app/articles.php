@@ -16,10 +16,12 @@ class articles extends Model
     protected $dates        = ['created_at'];
     protected $dateFormat   = 'Y-m-d H:i:s';
 
-    public function avatars(){
-        return $this->hasMany('App\avatars', 'avt_id', 'avt_id');
+    public function avatars()
+    {
+        return $this->belongsTo('App\avatars', 'avt_id', 'avt_id');
     }
-    public function categories(){
-        return $this->hasMany('App\categories', 'cat_id', 'cat_id');
+    public function categories()
+    {
+        return $this->belongsTo('App\categories', 'cat_id', 'cat_id');
     }
 }

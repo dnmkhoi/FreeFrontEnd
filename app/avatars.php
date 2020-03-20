@@ -11,4 +11,10 @@ class avatars extends Model
     protected $guarded      = 'avt_id';
     protected $primaryKey   = 'avt_id';
     protected $dateFormat   = 'Y-m-d H:i:s';
+    public $timestamps = false;
+
+    public function articles()
+    {
+        return $this->hasMany('App\articles', 'avt_id', 'avt_id');
+    }
 }

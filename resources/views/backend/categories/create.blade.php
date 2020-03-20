@@ -4,17 +4,17 @@
 Thêm mới thể loại
 @endsection
 @section('content')
-<form id="frmtheLoai" name="frmtheLoai" method="post" action="{{ route('categories.store') }}">
+<form id="frmtheLoai" class="frmtheLoai" name="frmtheLoai" method="post" action="{{ route('categories.store') }}">
     {{ csrf_field() }}
     <div class="form-group">
-        <label for="l_ten">Tên thể loại</label>
+        <label for="cat_name">Tên thể loại</label>
         <input type="text" class="form-control" id="cat_name" name="cat_name" aria-describedby="cat_nameHelp" placeholder="Nhập tên thể loại" value="{{ old('cat_name') }}">
     </div>
     <button class="btn btn-primary">Lưu</button>
 </form>
 @endsection
 
-@section('custom-scripts')
+@section('custom-js')
 <script>
     $(document).ready(function () {
         $("#frmtheLoai").validate({
@@ -27,9 +27,9 @@ Thêm mới thể loại
             },
             messages: {
                 cat_name: {
-                    required: "Vui lòng nhập tên Loại",
-                    minlength: "Tên Loại phải có ít nhất 3 ký tự",
-                    maxlength: "Tên Loại không được vượt quá 191 ký tự"
+                    required: "Vui lòng nhập tên thể loại",
+                    minlength: "Tên thể loại phải có ít nhất 3 ký tự",
+                    maxlength: "Tên thể loại không được vượt quá 191 ký tự"
                 },
             },
             errorElement: "em",
