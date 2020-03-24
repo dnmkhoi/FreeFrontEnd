@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('/test', 'TheifController@index')->name('backend.theif');
 Route::get('/test/{page}', 'TheifController@changePage')->name('backend.theif.page');
+Route::get('/test/detail/{key}', 'TheifController@detail')->name('backend.theif.detail');
 
 Route::group(['middleware' => 'auth'], function()
 {

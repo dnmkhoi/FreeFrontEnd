@@ -40,11 +40,49 @@ class TheifController extends Controller
                 $model['art_avt'] = $this->target.$value->find('img',0)->src;
                 $model['art_detail'] = str_replace('                           ...',
                     '',$value->find('column>p',0)->plaintext);
-                $model['art_link'] = $value->find('.permalink',0)->href;
+                $model['art_link'] = str_replace($this->target.'/','',$value->find('.permalink',0)->href);
                 $model['art_date'] = date("d/m/Y", strtotime($value->find('time',0)->plaintext));
                 array_push($art_list,$model);
             }
         }
         return $art_list;
+    }
+
+    public function detail($key) {
+        $html = new Htmldom($this->target.'//'.$key);
+        $rs = $html->find('article.wrapper-2017');
+        $data = [];
+        $art_list = [];
+        foreach($rs as $key => $value){
+            $model['art_name'] = $value->find('h3',0)->plaintext;
+            $model['art_detail'] = $value->find('p',0)->plaintext;
+            $model['art_isimg'] = sizeof($value->find('img')) > 0;
+            if(sizeof($value->find('video')) <= 0){
+                if(empty($value->find('img',0)->getAttribute('data-src'))){
+                    $model['art_src'] = $this->target.$value->find('img',0)->getAttribute('src');
+                }else{
+                    $model['art_src'] = $this->target.$value->find('img',0)->getAttribute('data-src');
+                }
+            }else{
+                $model['art_src'] = $this->target.$value->find('video',0)->src;
+            }
+            $model['art_isimg'] = sizeof($value->find('img')) > 0;
+            $model['art_author'] = $value->find('.info-author li',0)->plaintext;
+            if(!empty($value->find('.info-author li',1)->plaintext)){
+                $model['art_date'] = '('.date("d/m/Y", strtotime($value->find('.info-author li',1)->plaintext)).')';
+            }else{
+                $model['art_date'] = '';
+            }
+            $model['links'] = [];
+            foreach($value->find('.info-link a') as $key_link => $value_link){
+                $link['name'] = $value_link->plaintext;
+                $link['link'] = $value_link->href;
+                array_push($model['links'],$link);
+            }
+
+            array_push($art_list,$model);
+        }
+        $data['art_list'] = $art_list;
+        return view('backend.theif.detail')->with('data',$data);;
     }
 }
