@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'FrontendController@index')->name('frontend.home');
 
 Route::get('/test', 'TheifController@index')->name('backend.theif');
 Route::get('/test/{page}', 'TheifController@changePage')->name('backend.theif.page');
@@ -24,6 +23,7 @@ Route::get('/test/detail/{key}', 'TheifController@detail')->name('backend.theif.
 Route::group(['middleware' => 'auth'], function()
 {
     Route::get('/admin', 'BackendController@dashboard')->name('backend.dashboard');
+
 });
 Route::post('admin/login', [
     'uses'          => 'Auth\AuthController@login',
