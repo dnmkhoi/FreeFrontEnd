@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yangqi\Htmldom\Htmldom;
 use App\articles;
+use Illuminate\Support\Facades\DB;
 
 class TheifController extends Controller
 {
@@ -84,5 +85,23 @@ class TheifController extends Controller
         }
         $data['art_list'] = $art_list;
         return view('backend.theif.detail')->with('data',$data);;
+    }
+
+    public function stealthArticle(Request $request){
+        $data = json_decode($request->input('data'));
+        $art = new articles();
+        $art->art_name          = $data->art_name;
+        $art->art_author        = $data->art_author;
+        $art->art_description   = $data->art_detail;
+        $art->art_link_demo     = json_encode($data->art_link);
+        // $ch = curl_init($url);
+        // $img = '..\resources\img\jtsage-datebox123.'.explode('.', $url)[sizeof(explode('.', $url))-1];
+        // $fp = fopen($img, 'c');
+        // curl_setopt($ch, CURLOPT_FILE, $fp);
+        // curl_setopt($ch, CURLOPT_HEADER, 0);
+        // curl_exec($ch);
+        // curl_close($ch);
+        // fclose($fp);
+        return $art;
     }
 }
